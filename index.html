@@ -323,10 +323,10 @@
           <div class="search-wrapper">
             <h3>Thông tin</h3>
 
-            <form class="search-form" action="#">
+            <form class="search-form" id="order" action="#">
               <div class="form-group">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Tên bạn">
+                  <input type="text" class="form-control" name="customer" placeholder="Tên bạn" required>
                   <div class="input-group-append">
                     <span class="input-group-text"><i class="ti-user"></i></span>
                   </div>
@@ -334,7 +334,7 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Số điện thoại">
+                  <input type="text" class="form-control" name="customer_phone" placeholder="Số điện thoại" required>
                   <div class="input-group-append">
                     <span class="input-group-text"><i class="ti-headphone-alt"></i></span>
                   </div>
@@ -342,7 +342,7 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Địa chỉ nhận hàng">
+                  <input type="text" class="form-control" name="customer_address" placeholder="Địa chỉ nhận hàng" required>
                   <div class="input-group-append">
                     <span class="input-group-text"><i class="ti-home"></i></span>
                   </div>
@@ -350,7 +350,7 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <textarea class="form-control" placeholder="Thông tin đơn hàng. VD: Cốm tươi 2kg, bánh cốm 100 cái..." style="margin: 0px;height: 132px;"></textarea>
+                  <textarea class="form-control" name="customer_order" placeholder="Thông tin đơn hàng. VD: Cốm tươi 2kg, bánh cốm 100 cái..." style="margin: 0px;height: 132px;" required></textarea>
                   <div class="input-group-append">
                     <span class="input-group-text"><i class="ti-comment-alt"></i></span>
                   </div>
@@ -473,8 +473,8 @@
   <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
   <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
   <script src="vendors/Magnific-Popup/jquery.magnific-popup.min.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/mail-script.js"></script>
+  <script src="js/sweetalert.min.js"></script>
+  <script src="js/email.min.js"></script>
   <script src="js/main.js"></script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121423129-2"></script>
 	<script>

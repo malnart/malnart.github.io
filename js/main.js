@@ -1,12 +1,8 @@
 $(function() {
-  "use strict";
+    "use strict";
+    emailjs.init("user_uKBCby72HB0g4ru8V5Np0");
 
-  var nav_offset_top = $('header').height() + 50; 
-    /*-------------------------------------------------------------------------------
-	  Navbar 
-	-------------------------------------------------------------------------------*/
-
-	//* Navbar Fixed  
+    var nav_offset_top = $('header').height() + 50;
     function navbarFixed(){
         if ( $('.header_area').length ){ 
             $(window).scroll(function() {
@@ -21,32 +17,15 @@ $(function() {
     };
     navbarFixed();
 
+    $(".hero-banner__video").magnificPopup({
+        disableOn: 700,
+        type: "iframe",
+        mainClass: "mfp-fade",
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+    });
 
-
-
-
-  //------- mailchimp --------//  
-	function mailChimp() {
-		$('#mc_embed_signup').find('form').ajaxChimp();
-	}
-  mailChimp();
-
-
-  //------- video popup -------//
-  $(".hero-banner__video").magnificPopup({
-    disableOn: 700,
-    type: "iframe",
-    mainClass: "mfp-fade",
-    removalDelay: 160,
-    preloader: false,
-    fixedContentPos: false
-  });
-
-
-
-    /*-------------------------------------------------------------------------------
-	  featured slider
-	-------------------------------------------------------------------------------*/
     if ($('.featured-carousel').length) {
         $('.featured-carousel').owlCarousel({
             loop: false,
@@ -69,11 +48,6 @@ $(function() {
         })
     }
 
-
-
-    /*-------------------------------------------------------------------------------
-	  featured slider
-	-------------------------------------------------------------------------------*/
     if ($('.hero-carousel').length) {
         $('.hero-carousel').owlCarousel({
             loop: false,
@@ -87,9 +61,49 @@ $(function() {
         })
     }
 
+    var form = $('#order');
 
+    form.on('submit', function(e) {
+        e.preventDefault();
+        let customer = form.find('[name="customer"]').val();
+        let customer_phone = form.find('[name="customer_phone"]').val();
+        let customer_address = form.find('[name="customer_address"]').val();
+        let customer_order = form.find('[name="customer_order"]').val();
+        let $submit_button = form.find('[type="submit"]');
 
-  
+        let regex_phone = /(0|\+84\s?)\w{9}/gm.test(customer_phone);
+        let regex_address = customer_address.match(/\s/g).length;
+        let regex_order = /\s+\w+/gm.test(customer_order);
+
+        if (!regex_phone) {
+            swal("","Số điện thoại của bạn chưa đúng chuẩn", "warning");
+            return false;
+        }
+        if (regex_address < 3) {
+            swal("","Địa chỉ giao hàng chưa đúng", "warning");
+            return false;
+        }
+        if (!regex_order) {
+            swal("","Thông tin đơn hàng chưa đúng", "warning");
+            return false;
+        }
+        $submit_button.prop('disabled', true);
+        $submit_button.text('Đang gửi ....');
+        emailjs.send("default_service", "commetri", {
+            "name": customer,
+            "phone": customer_phone,
+            "address": customer_address,
+            "order": customer_order
+        }) .then(function(response) {
+            swal("Cảm ơn bạn !", "Đơn hàng của bạn đã được gửi đi, chúng tôi sẽ gọi lại cho bạn để xác nhận gửi hàng", "success");
+            console.log('SUCCESS!', response.status, response.text);
+            $submit_button.prop('disabled', false);
+            $submit_button.text('Gửi đơn hàng');
+            form.trigger('reset');
+        }, function(error) {
+            console.log('FAILED...', error);
+        });
+    });
 });
 
-
+        
