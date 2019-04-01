@@ -36,20 +36,14 @@ $(function() {
         e.preventDefault();
         let customer = form.find('[name="customer"]').val();
         let customer_phone = form.find('[name="customer_phone"]').val();
-        let customer_address = form.find('[name="customer_address"]').val();
         let customer_order = form.find('[name="customer_order"]').val();
         let $submit_button = form.find('[type="submit"]');
 
         let regex_phone = /(0|\+84\s?)\w{9}/gm.test(customer_phone);
-        let regex_address = customer_address.match(/\s/g).length;
         let regex_order = /\s+\w+/gm.test(customer_order);
 
         if (!regex_phone) {
             swal("","Số điện thoại của bạn chưa đúng chuẩn", "warning");
-            return false;
-        }
-        if (regex_address < 3) {
-            swal("","Địa chỉ giao hàng chưa đúng", "warning");
             return false;
         }
         if (!regex_order) {
