@@ -17,19 +17,6 @@ $(function() {
     };
     navbarFixed();
 
-    if ($('.hero-carousel').length) {
-        $('.hero-carousel').owlCarousel({
-            loop: false,
-            margin: 30,
-            items: 1,
-            nav: false,
-            dots: true,
-            responsiveClass: true,
-            slideSpeed: 300,
-            paginationSpeed: 500
-        })
-    }
-
     var form = $('#order');
 
     form.on('submit', function(e) {
