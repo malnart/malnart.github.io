@@ -23,6 +23,7 @@ $(function() {
         e.preventDefault();
         let customer = form.find('[name="customer"]').val();
         let customer_phone = form.find('[name="customer_phone"]').val();
+        let customer_address = form.find('[name="customer_address"]').val();
         let customer_order = form.find('[name="customer_order"]').val();
         let $submit_button = form.find('[type="submit"]');
 
