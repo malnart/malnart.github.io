@@ -44,7 +44,8 @@ $(function() {
             "name": customer,
             "phone": customer_phone,
             "address": customer_address,
-            "order": customer_order
+            "order": customer_order,
+            "email": "vmdvmd020396@gmail.com",
         }) .then(function(response) {
             swal("Cảm ơn bạn !", "Đơn hàng của bạn đã được gửi đi, chúng tôi sẽ gọi lại cho bạn để xác nhận gửi hàng", "success");
             console.log('SUCCESS!', response.status, response.text);
